@@ -25,13 +25,31 @@ class App extends Component {
                   <Nav.Link href="#home">Jobs</Nav.Link>
                   <Nav.Link href="#link">Recruiters</Nav.Link>
                   <Nav.Link href="#home">Companies</Nav.Link>
-                  <Nav.Link href="#home">Tools</Nav.Link>
-                  <Nav.Link href="#home">Services</Nav.Link>
-                  <Nav.Link href="#home">More</Nav.Link>
+                  <Nav.Link href="#home">Post Jobs</Nav.Link>
+                  <Nav.Link href="#home">Apply Jobs</Nav.Link>
+                  <Nav.Link href="#home">Expert Support</Nav.Link>
                   <Nav.Link href="#home">Login</Nav.Link>
                 </Nav>
               </Navbar.Collapse>
             </Navbar>
+          </Col>
+        </Row>
+        <Row noGutters className="pageRow">
+          <Col>
+            <h4>Find A Job at India's No.1 Job Site</h4>
+            <Form>
+              <Form.Row>
+                <Col>
+                  <Form.Control placeholder="Skills, Designation, Companies" />
+                </Col>
+                <Col>
+                  <Form.Control placeholder="Enter Location" />
+                </Col>
+                <Col>
+                  <Button>Submit</Button>
+                </Col>
+              </Form.Row>
+            </Form>
           </Col>
         </Row>
       </Container>
