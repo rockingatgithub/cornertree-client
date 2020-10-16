@@ -14,9 +14,9 @@ import {
 class App extends Component {
   render() {
     return (
-      <Container>
-        <Row>
-          <Col>
+      <Container fluid>
+        <Row noGutters>
+          <Col lg={12}>
             <Navbar bg="light" expand="lg">
               <Navbar.Brand href="#home">Naukri.com</Navbar.Brand>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
