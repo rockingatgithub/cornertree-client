@@ -10,8 +10,17 @@ import {
   FormControl,
   Button,
 } from "react-bootstrap";
+import JobsPost from "./JobsPost";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state={
+      showPostForm: false,
+    }
+  }
+  
+
   render() {
     return (
       <Container fluid>
@@ -25,7 +34,7 @@ class App extends Component {
                   <Nav.Link href="#home">Jobs</Nav.Link>
                   <Nav.Link href="#link">Recruiters</Nav.Link>
                   <Nav.Link href="#home">Companies</Nav.Link>
-                  <Nav.Link href="#home">Post Jobs</Nav.Link>
+                  <Nav.Link href="#home" onClick={this.postJobsHandler}>Post Jobs</Nav.Link>
                   <Nav.Link href="#home">Apply Jobs</Nav.Link>
                   <Nav.Link href="#home">Expert Support</Nav.Link>
                   <Nav.Link href="#home">Login</Nav.Link>
@@ -52,6 +61,10 @@ class App extends Component {
             </Form>
           </Col>
         </Row>
+        <Row noGutters className="pageRow">
+
+        </Row>
+        <JobsPost/>
       </Container>
     );
   }
