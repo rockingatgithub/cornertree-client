@@ -9,17 +9,69 @@ import {
   Form,
   FormControl,
   Button,
+  ListGroup,
 } from "react-bootstrap";
+import DashBoard from "./DashBoard";
 import JobsPost from "./JobsPost";
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state={
+    this.state = {
       showPostForm: false,
-    }
+      showDashBoard: false,
+      showJobs: true,
+      skills: "",
+      location: "",
+    };
   }
-  
+
+  postJobsHandler = () => {
+    if (this.state.showPostForm) {
+      this.setState({
+        showPostForm: false,
+        showJobs: true,
+      });
+    } else {
+      this.setState({
+        showJobs: false,
+        showPostForm: true,
+      });
+    }
+  };
+
+  toggleDashBoard = () => {
+    if (this.state.showDashBoard) {
+      this.setState({
+        showDashBoard: false,
+        showJobs: true,
+      });
+    } else {
+      this.setState({
+        showJobs: false,
+        showDashBoard: true,
+      });
+    }
+  };
+
+  skillSearch = (e) => {
+    this.setState({
+      skills: e.target.value,
+    });
+  };
+
+  locationSearch = (e) => {
+    this.setState({
+      location: e.target.value,
+    });
+  };
+
+  jobSearchHandler = async () => {
+    let data = await fetch(
+      "https://jobs.github.com/positions.json?location=India"
+    );
+    console.log(data);
+  };
 
   render() {
     return (
@@ -34,9 +86,14 @@ class App extends Component {
                   <Nav.Link href="#home">Jobs</Nav.Link>
                   <Nav.Link href="#link">Recruiters</Nav.Link>
                   <Nav.Link href="#home">Companies</Nav.Link>
-                  <Nav.Link href="#home" onClick={this.postJobsHandler}>Post Jobs</Nav.Link>
+                  <Nav.Link href="#home" onClick={this.postJobsHandler}>
+                    Post Jobs
+                  </Nav.Link>
                   <Nav.Link href="#home">Apply Jobs</Nav.Link>
                   <Nav.Link href="#home">Expert Support</Nav.Link>
+                  <Nav.Link href="#home" onClick={this.toggleDashBoard}>
+                    DashBoard
+                  </Nav.Link>
                   <Nav.Link href="#home">Login</Nav.Link>
                 </Nav>
               </Navbar.Collapse>
@@ -49,22 +106,34 @@ class App extends Component {
             <Form>
               <Form.Row>
                 <Col>
-                  <Form.Control placeholder="Skills, Designation, Companies" />
+                  <Form.Control
+                    placeholder="Skills, Designation, Companies"
+                    onChange={this.skillSearch}
+                    value={this.state.skills}
+                  />
                 </Col>
                 <Col>
-                  <Form.Control placeholder="Enter Location" />
+                  <Form.Control
+                    placeholder="Enter Location"
+                    onChange={this.locationSearch}
+                    value={this.state.location}
+                  />
                 </Col>
                 <Col>
-                  <Button>Submit</Button>
+                  <Button onClick={this.jobSearchHandler}>Submit</Button>
                 </Col>
               </Form.Row>
             </Form>
           </Col>
         </Row>
-        <Row noGutters className="pageRow">
-
-        </Row>
-        <JobsPost/>
+        <Row noGutters className="pageRow"></Row>
+        {this.state.showJobs && (
+          <ListGroup>
+            <ListGroup.Item></ListGroup.Item>
+          </ListGroup>
+        )}
+        {this.state.showPostForm && <JobsPost />}
+        {this.state.showDashBoard && <DashBoard />}
       </Container>
     );
   }
