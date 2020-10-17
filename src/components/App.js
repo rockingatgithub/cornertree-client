@@ -11,6 +11,7 @@ import {
   Button,
   ListGroup,
 } from "react-bootstrap";
+import { GreatThings } from "moving-letters";
 import DashBoard from "./DashBoard";
 import JobsPost from "./JobsPost";
 
@@ -66,12 +67,7 @@ class App extends Component {
     });
   };
 
-  jobSearchHandler = async () => {
-    let data = await fetch(
-      "https://jobs.github.com/positions.json?location=India"
-    );
-    console.log(data);
-  };
+  jobSearchHandler = async () => {};
 
   render() {
     return (
@@ -126,12 +122,16 @@ class App extends Component {
             </Form>
           </Col>
         </Row>
-        <Row noGutters className="pageRow"></Row>
-        {this.state.showJobs && (
+        <Row noGutters className="pageRow">
+          <div className="moving-text">
+            <GreatThings text=" Hello User! Click on post jobs to post a new job." />
+          </div>
+        </Row>
+        {/* {this.state.showJobs && (
           <ListGroup>
             <ListGroup.Item></ListGroup.Item>
           </ListGroup>
-        )}
+        )} */}
         {this.state.showPostForm && <JobsPost />}
         {this.state.showDashBoard && <DashBoard />}
       </Container>

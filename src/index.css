@@ -10,3 +10,12 @@ body {
 .pageRow {
   margin-top: 40px;
 }
+
+.moving-text {
+  margin-top: 66px;
+}
+
+.moving-text h1 {
+  color: cadetblue;
+  font-weight: 600 !important;
+}
