@@ -11,6 +11,7 @@ import {
   FormControl,
   Button,
 } from "react-bootstrap";
+import ShareScreen from "./ShareScreen";
 class JobsPost extends Component {
   constructor(props) {
     super(props);
@@ -23,6 +24,7 @@ class JobsPost extends Component {
       locationZip: "",
       compensation: "",
       jobDescription: "",
+      showshare: false,
     };
   }
 
@@ -54,7 +56,19 @@ class JobsPost extends Component {
       .post("http://localhost:9000/job/jobPost", {
         data,
       })
-      .then((res) => console.log(res.data));
+      .then(
+        this.setState({
+          role: "",
+          company: "",
+          coreSkills: "",
+          softSkills: "",
+          location: "",
+          locationZip: "",
+          compensation: "",
+          jobDescription: "",
+          showshare: true,
+        })
+      );
     return;
   };
 
@@ -77,6 +91,7 @@ class JobsPost extends Component {
     } = this.state;
     return (
       <Row>
+        {this.state.showshare && <ShareScreen />}
         <Col lg={6}>
           <h4>Post a new Job</h4>
           <Form onSubmit={this.handleFormSubmit}>

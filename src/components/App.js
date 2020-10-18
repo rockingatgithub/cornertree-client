@@ -24,6 +24,7 @@ class App extends Component {
       showJobs: true,
       skills: "",
       location: "",
+      text: true,
     };
   }
 
@@ -37,6 +38,7 @@ class App extends Component {
       this.setState({
         showJobs: false,
         showPostForm: true,
+        text: false,
       });
     }
   };
@@ -122,16 +124,14 @@ class App extends Component {
             </Form>
           </Col>
         </Row>
-        <Row noGutters className="pageRow">
-          <div className="moving-text">
-            <GreatThings text=" Hello User! Click on post jobs to post a new job." />
-          </div>
-        </Row>
-        {/* {this.state.showJobs && (
-          <ListGroup>
-            <ListGroup.Item></ListGroup.Item>
-          </ListGroup>
-        )} */}
+        {this.state.text && (
+          <Row noGutters className="pageRow">
+            <div className="moving-text">
+              <GreatThings text=" Hello User! Click on post jobs to post a new job." />
+            </div>
+          </Row>
+        )}
+
         {this.state.showPostForm && <JobsPost />}
         {this.state.showDashBoard && <DashBoard />}
       </Container>
