@@ -39,18 +39,23 @@ class JobsPost extends Component {
       jobDescription,
     } = this.state;
 
+    let data = {
+      role,
+      company,
+      coreSkills,
+      softSkills,
+      location,
+      locationZip,
+      compensation,
+      jobDescription,
+    };
+    // console.log(data);
     axios
       .post("http://localhost:9000/job/jobPost", {
-        role,
-        company,
-        coreSkills,
-        softSkills,
-        location,
-        locationZip,
-        compensation,
-        jobDescription,
+        data,
       })
-      .then((res) => console.log(res));
+      .then((res) => console.log(res.data));
+    return;
   };
 
   handleChange = (e) => {
@@ -74,7 +79,7 @@ class JobsPost extends Component {
       <Row>
         <Col lg={6}>
           <h4>Post a new Job</h4>
-          <Form onClick={this.handleFormSubmit}>
+          <Form onSubmit={this.handleFormSubmit}>
             <Form.Group controlId="JobRole">
               <Form.Label>Job Role</Form.Label>
               <Form.Control
@@ -83,6 +88,7 @@ class JobsPost extends Component {
                 name="role"
                 value={role}
                 onChange={this.handleChange}
+                required
               />
             </Form.Group>
             <Form.Group controlId="Company">
@@ -93,6 +99,7 @@ class JobsPost extends Component {
                 name="company"
                 value={company}
                 onChange={this.handleChange}
+                required
               />
             </Form.Group>
             <Form.Group controlId="Skills">
@@ -103,6 +110,7 @@ class JobsPost extends Component {
                 name="coreSkills"
                 value={coreSkills}
                 onChange={this.handleChange}
+                required
               />
             </Form.Group>
             <Form.Group controlId="SoftSkills">
@@ -113,6 +121,7 @@ class JobsPost extends Component {
                 name="softSkills"
                 value={softSkills}
                 onChange={this.handleChange}
+                required
               />
             </Form.Group>
             <Form.Group controlId="Location">
@@ -123,26 +132,29 @@ class JobsPost extends Component {
                 name="location"
                 value={location}
                 onChange={this.handleChange}
+                required
               />
             </Form.Group>
             <Form.Group controlId="LocationZip">
               <Form.Label>Location PIN/ZIP</Form.Label>
               <Form.Control
-                type="text"
+                type="number"
                 placeholder="Enter your zip-code"
                 name="locationZip"
                 value={locationZip}
                 onChange={this.handleChange}
+                required
               />
             </Form.Group>
             <Form.Group controlId="Compensation">
               <Form.Label>Compensation</Form.Label>
               <Form.Control
-                type="text"
+                type="number"
                 placeholder="Enter your job compensation"
                 name="compensation"
                 value={compensation}
                 onChange={this.handleChange}
+                required
               />
             </Form.Group>
             <Form.Group controlId="JobDescription">
@@ -154,6 +166,7 @@ class JobsPost extends Component {
                 name="jobDescription"
                 value={jobDescription}
                 onChange={this.handleChange}
+                required
               />
             </Form.Group>
             <Button variant="primary" type="submit">
